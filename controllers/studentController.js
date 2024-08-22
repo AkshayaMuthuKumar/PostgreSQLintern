@@ -3,6 +3,7 @@ const { Op } = require('sequelize');
 const Student = require('../models/student')
 const { transporter } = require('../utils.js/notification'); 
 
+
 // Create a new student detail
 exports.createStudentDetail = async (req, res) => {
   const { firstName, lastName, email, age, student_metadata } = req.body;
@@ -209,3 +210,4 @@ exports.trackEmailOpen = async (req, res) => {
     res.sendStatus(500);
   }
 };
+
