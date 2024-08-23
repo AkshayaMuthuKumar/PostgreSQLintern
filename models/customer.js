@@ -6,19 +6,50 @@ const CustomerProducts = require('./customerproducts');
 const Customer = sequelize.define('Customer', {
     firstName: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: true,
+        }
     },
     lastName: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: true,
+        }
     },
     email: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: true,
+            isEmail: true,
+        }
+    },
+    mobile: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true,
+        }
+    },
+    address: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true,
+        }
+    },
+    zipcode: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true,
+        }
     }
 }, {
     timestamps: true,
-    tableName: 'Customers' // Ensure this matches the table name in the database
+    tableName: 'Customers' 
 });
 
 // Many-to-Many relationship with Product

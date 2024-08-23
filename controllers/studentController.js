@@ -3,10 +3,26 @@ const { Op } = require('sequelize');
 const Student = require('../models/student')
 const { transporter } = require('../utils.js/notification'); 
 
+const nameRegex = /^[a-zA-Z0-9_]+$/;
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const ageRegex = /^(?:0|[1-9][0-9]?|1[01][0-9]|120|121|122|123)$/;
 
 // Create a new student detail
 exports.createStudentDetail = async (req, res) => {
   const { firstName, lastName, email, age, student_metadata } = req.body;
+
+  if (!nameRegex.test(firstName) || !nameRegex.test(lastName)) {
+    return res.status(400).json({ error: 'Invalid firstName or lastName. Only alphanumeric characters and underscores are allowed.' });
+}
+
+if (!emailRegex.test(email)) {
+    return res.status(400).json({ error: 'Invalid email format.' });
+}
+
+if (!ageRegex.test(age)) {
+    return res.status(400).json({ error: 'Invalid age. Only numbers are allowed.' });
+}
+
 
   try {
     const [result] = await sequelize.query(`
@@ -110,6 +126,19 @@ exports.getStudentDetailById = async (req, res) => {
 // Update a student detail
 exports.updateStudentDetail = async (req, res) => {
   const { firstName, lastName, email, age, student_metadata } = req.body;
+
+  if (!nameRegex.test(firstName) || !nameRegex.test(lastName)) {
+    return res.status(400).json({ error: 'Invalid firstName or lastName. Only alphanumeric characters and underscores are allowed.' });
+}
+
+if (!emailRegex.test(email)) {
+    return res.status(400).json({ error: 'Invalid email format.' });
+}
+
+if (!ageRegex.test(age)) {
+    return res.status(400).json({ error: 'Invalid age. Only numbers are allowed.' });
+}
+
 
   try {
     const [result] = await sequelize.query(`

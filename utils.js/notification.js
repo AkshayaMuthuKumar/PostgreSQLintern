@@ -14,7 +14,6 @@ const transporter = nodemailer.createTransport({
 
 // Function to send the initial notification
 const sendInitialNotification = async (student) => {
- const pixelUrl = `http://localhost:3000/api/track-email?email=${student.email}&id=${student.id}`;
   const mailOptions = {
     from: 'akshaya1907@gmail.com',
     to: student.email,
@@ -22,7 +21,6 @@ const sendInitialNotification = async (student) => {
     html: `
       <p>Hello ${student.firstName},</p>
       <p>Your record has been successfully created.</p>
- <img src="${pixelUrl}" alt="" width="1" height="1" style="display: none;">
 
     `,
   };
