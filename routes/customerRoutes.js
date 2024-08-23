@@ -29,4 +29,7 @@ router.get('/customers/by-product-and-company', customerController.getCustomersB
 router.post('/customer-products', customerProductsController.addCustomerToProduct);
 router.delete('/customer-products', customerProductsController.removeCustomerFromProduct);
 
+router.get('/customers/eligible-customers', customerController.fetchEligibleCustomersAndSendCoupons);
+router.post('/customers/send-coupon', customerController.sendCoupon);
+
 module.exports = router;
